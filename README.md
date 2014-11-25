@@ -18,11 +18,11 @@ Personal Information Validator(PIV)
 	
 2. piv 폴더로 이동
 
-	$>cd piv
+    $>cd piv
 	
 3. 웹서버 구동	
 
-	$>node index.js
+    $>node index.js
 	
 4. http://127.0.0.1:3000/ 에서 샘플 확인
 
