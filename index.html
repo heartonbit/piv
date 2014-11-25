@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Submit Validation</title>
+<!--<script src="./lib/jquery-1.9.0.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="./lib/pivalidator.js"></script>
+<style>
+div {
+	text-align:center;
+}
+div.left {
+	float:left;width:50%;height:300px;
+}
+div.right {
+	float:right;width:50%;height:300px;
+}
+input {
+	width:90%;
+}
+
+textarea.desc {
+	width:90%;
+	height:300px;
+}
+</style>
+
+<script>
+	function trace(msg){
+		try{console.log(msg);}catch(e){}
+	}
+	function go(button){
+		trace("go!");
+		$(button).parent().submit();
+	}
+	$(document).ready(function(){
+		trace("document ready");
+	});
+
+</script>
+</head>
+<body>
+<h1>Personal Infomation Validator Sample</h1>
+<div class="left">
+	<form id="frm1" action="/">
+		<input name="title" type="text" value="Title">
+		<div><textarea class="desc" name="desc" type="text"></textarea></div>
+		<input type="button" value="submit" onclick="javascript:go(this);" >
+	</form>	
+</div>
+<div class="right">
+	<form id="frm2" action="/">
+		<input name="title" type="text" value="Title">
+		<div><textarea class="desc" name="desc" type="text" ></textarea></div>
+		<input type="button" value="submit" onclick="javascript:go(this);" >
+	</form>	
+</div>
+</body>
+</html>

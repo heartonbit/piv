@@ -1,0 +1,8 @@
+{
+  "name": "personal-information-validator",
+  "version": "0.0.1",
+  "description": "personal-information-validator",
+  "dependencies": {
+    "express": "^4.10.3"
+  }
+}
