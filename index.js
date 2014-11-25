@@ -1,6 +1,10 @@
 var app = require('express')();
 var http = require('http').Server(app);
 
+if(process.env.PORT === "" || process.env.PORT === undefined){
+  process.env.PORT = 3000;
+}
+
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
@@ -21,6 +25,6 @@ app.get('/lib/pivalidator.js', function(req, res){
   res.sendFile(__dirname + '/lib/pivalidator.js');
 });
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+http.listen(process.env.PORT, function(){
+  console.log('listening on *:'+process.env.PORT);
 });
