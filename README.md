@@ -14,15 +14,15 @@ Personal Information Validator(PIV)
 
 1. 소스를 다운받을 디렉토리에서 아래 명령으로 소스코드를 가져온다.
 
-    $>git clone https://github.com/heartonbit/piv.git
+<code>$>git clone https://github.com/heartonbit/piv.git</code>
 	
 2. piv 폴더로 이동
 
-    $>cd piv
+<code>$>cd piv</code>
 	
 3. 웹서버 구동	
 
-    $>node index.js
+<code>$>node index.js</code>
 	
 4. http://127.0.0.1:3000/ 에서 샘플 확인
 
