@@ -10,6 +10,8 @@ Personal Information Validator(PIV)
 * Git : http://git-scm.com/
 * Node.js : http://nodejs.org/download/
 
+### 샘플코드 설치 및 실행방법
+
 1. 소스를 다운받을 디렉토리에서 아래 명령으로 소스코드를 가져온다.
 
     $>git clone https://github.com/heartonbit/piv.git
