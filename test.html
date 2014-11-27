@@ -103,7 +103,11 @@
 
 		test("가짜 주민정보가 들어있는 더 긴 텍스트", function(){
 			ok(!PIValidator.containPI(bigtext_with_fake_ssn), "주민번호 없음");
-		});		
+		});	
+		
+		test("진짜 여권번호", function(){
+			ok(false, "아직 개발 안했음.")
+		});
 		
 	}
 </script>
