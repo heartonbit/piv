@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Submit Validation</title>
+<script src="./lib/util.js"></script>
 <!--<script src="./lib/jquery-1.9.0.min.js"></script>-->
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="./lib/pivalidator.js"></script>
+<script src="./lib/PIDetector.js"></script>
 <style>
 div {
 	text-align:center;
@@ -27,15 +28,29 @@ textarea.desc {
 </style>
 
 <script>
-	function trace(msg){
-		try{console.log(msg);}catch(e){}
-	}
-	function go(button){
-		trace("go!");
+
+	function go (button) {
+		'use strict';
 		$(button).parent().submit();
 	}
-	$(document).ready(function(){
-		trace("document ready");
+	
+	$(document).ready(function () {
+		trace("document ready1");
+	
+	    $("form").submit(function (e) {
+	        trace(decodeURI($(e.target).serialize().replace(/[+]/g, "")));
+			var msg = "검출된 개인정보가 없습니다.";    
+	        if(detector.search($(e.target).serialize().replace(/[+]/g, ""))){
+	            if(!window.confirm(detector.getDetected().name + "로 의심되는 정보가 발견되었습니다.\n\n계속 진행하시겠습니까")){
+	            	msg = "전송중단!";
+	                e.preventDefault();//실행중단!!!
+	            }else{
+	            	msg = "검출된 개인정보를 무시하고 진행합니다.";
+	            }
+	        }
+	       	alert(msg);
+	        e.preventDefault();//실행중단!!!
+	    });
 	});
 
 </script>
@@ -43,20 +58,11 @@ textarea.desc {
 <body>
 <h1>Personal Infomation Validator Sample</h1>
 <div class="left">
-	<form id="frm1" action="/">
-		<input name="title" type="text" value="Title">
+	<form id="frm1">
+		<input name="title" type="text" value="개인정보 검출 샘플">
 		<div><textarea class="desc" name="desc" type="text"></textarea></div>
 		<input type="button" value="submit" onclick="javascript:go(this);" >
 	</form>	
 </div>
-<!--
-<div class="right">
-	<form id="frm2" action="/">
-		<input name="title" type="text" value="Title">
-		<div><textarea class="desc" name="desc" type="text" ></textarea></div>
-		<input type="button" value="submit" onclick="javascript:go(this);" >
-	</form>	
-</div>
--->
 </body>
 </html>
