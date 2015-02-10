@@ -35,28 +35,35 @@ textarea.desc {
 	}
 	
 	$(document).ready(function () {
-		trace("document ready1");
-	
+
+		/* form submit hooking */
 	    $("form").submit(function (e) {
-	        trace(decodeURI($(e.target).serialize().replace(/[+]/g, "")));
-			var msg = "검출된 개인정보가 없습니다.";    
-	        if(detector.search($(e.target).serialize().replace(/[+]/g, ""))){
-	            if(!window.confirm(detector.getDetected().name + "로 의심되는 정보가 발견되었습니다.\n\n계속 진행하시겠습니까")){
+	    	
+ 		    var txt = decodeURIComponent($(e.target).serialize()).replace(/\+/g, " "); //decode space
+
+			//Detect defined rules
+	        if(detector.detect(txt)){ 
+	        	
+	        	trace(detector.detected);
+	        	
+	            if(!window.confirm(detector.detected[0].msg + "\n\n계속 진행하시겠습니까")){
 	            	msg = "전송중단!";
 	                e.preventDefault();//실행중단!!!
 	            }else{
 	            	msg = "검출된 개인정보를 무시하고 진행합니다.";
 	            }
 	        }
-	       	alert(msg);
-	        e.preventDefault();//실행중단!!!
+	        
+	        //Show result
+	       	alert(detector.detected.length > 0 ? msg : detector.empty);
+	        e.preventDefault();//테스트를 위해 네트워크 전송중단!!!
 	    });
 	});
 
 </script>
 </head>
 <body>
-<h1>Personal Infomation Validator Sample</h1>
+<h1>개인정보 검출 샘플</h1>
 <div class="left">
 	<form id="frm1">
 		<input name="title" type="text" value="개인정보 검출 샘플">
